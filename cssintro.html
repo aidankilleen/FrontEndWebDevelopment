@@ -44,11 +44,37 @@
             color: blue;
         }
 
-
+        .textbox {
+            border: 1px solid black;
+            height: 100px;
+            background-color: lightblue;
+        }
+        .textbox:empty {
+            /*display: none;*/
+            visibility: hidden;
+        }
     </style>
+
+    <script>
+        function onClick() {
+            let div = document.getElementById("txtMessage");
+            div.innerHTML = "This is a message";
+        }
+        function dismiss() {
+            let div = document.getElementById("txtMessage");
+            div.innerHTML = "";
+        }
+    </script>
 </head>
 <body>
     <h1>CSS Test Page</h1>
+
+    <button onclick="onClick()">Show Message</button>
+
+
+    <div onclick="dismiss()" class="textbox" id="txtMessage"></div>
+
+
 
     <div class="box" id="box1">
         <h1 style="color:seagreen">box1</h1>
