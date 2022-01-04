@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+    <h1 id="heading">JQuery Test!</h1>
+
+    <button id="btnTest">Press Me</button>
+
+    <div id="divTest"></div>
+
+    <h1>Stations</h1>
+    <select id="selStations" size="10"></select>
+
+    <script>
+
+        // jQuery is really good at:
+        //
+        // 1. Event Handling
+        // 2. DOM Manipulation
+        // 3. Ajax Call
+
+        // javascript allows you to assign to symbols
+        //let $ = 10;
+        //alert($);
+
+        var url = "http://api.citybik.es/v2/networks/dublinbikes";
+
+        $(document).ready(function() {
+
+            // assign an event using jQuery
+            $('#btnTest').on("click", function() {
+
+                // make an ajax call to get the bike stations
+                $.getJSON(url, function(data) {
+                    $('#heading').html(data.network.name);
+
+                    for (let i=0; i<data.network.stations.length; i++) {
+                        $('#selStations').append(`<option>${data.network.stations[i].name}</option>`);
+
+                    }
+                });
+
+            });
+
+
+
+        });
+    </script>
+</body>
+</html>
