@@ -29,20 +29,7 @@
             background-color: yellow;
         }
 
-        p:first-of-type {
-            color: blue;
-            font-weight: bold;
-            /*
-            border-style: double;
-            border-color: green;
-            border-width: 5px;
-            */
-            border: 15px dashed blue;
-            
-        }
-        p:last-of-type {
-            color: blue;
-        }
+
 
         .textbox {
             border: 1px solid black;
@@ -53,6 +40,37 @@
             /*display: none;*/
             visibility: hidden;
         }
+
+        .tbl {
+            border: 1px solid;
+        }
+        .tbl tbody tr:nth-child(odd) {
+            background-color: lightgreen;
+        }
+        .tbl tbody tr:nth-child(even) {
+            background-color: lightblue;
+        }
+        /* nb: if you use :hover something should happen when you click */
+        .tbl tbody tr:hover {
+            background-color: green;
+        }
+
+        p::first-line {
+            font-weight: bold;
+        }
+
+        p::selection {
+            background-color: lightgreen;
+        }
+
+        p::before {
+            content: '"';
+        }
+
+        p::after {
+            content: '"';
+        }
+
     </style>
 
     <script>
@@ -68,6 +86,61 @@
 </head>
 <body>
     <h1>CSS Test Page</h1>
+
+    <div>
+        <h1>Test</h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias veniam, nemo esse ipsum magnam totam deleniti! Officia, nisi, eius nihil nesciunt voluptas reiciendis placeat natus quasi eum, esse quos id.</p>
+        <p>Mollitia, cum fuga repellat minus velit voluptatem maiores nulla iure. Temporibus hic sed ea expedita consequatur reprehenderit minima, at facere, nesciunt culpa autem corporis magnam fuga aut. Magni, optio vero!</p>
+        <p>Placeat ad unde aperiam, culpa mollitia omnis? Architecto laboriosam, non exercitationem ipsum molestias, sequi repudiandae modi, corrupti nostrum quasi autem eum eligendi fuga explicabo veritatis consequatur vel ad? Magni, eius?</p>
+        <p>Assumenda quae reiciendis, rerum odio corporis quia modi eaque similique voluptas quis numquam! At temporibus cum quidem magnam, voluptatum commodi a molestiae dolor asperiores et totam, nobis repellendus sint porro?</p>
+        <p>Totam vel quam quod iure quibusdam voluptatem similique sint pariatur repudiandae nisi! Numquam totam, quas rem consequuntur similique ipsum officiis est, quasi distinctio reprehenderit provident obcaecati harum velit autem atque!</p>
+    </div>
+
+
+    <table class="tbl">
+        <thead>
+            <tr>
+                <th>Col 1</th>
+                <th>Col 2</th>
+                <th>Col 3</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+            </tr>
+        </tbody>
+    </table>
+
+
+
+
+
+
+
+
 
     <button onclick="onClick()">Show Message</button>
 
@@ -93,13 +166,6 @@
     </div>
 
 
-    <div>
-        <h1>Test</h1>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias veniam, nemo esse ipsum magnam totam deleniti! Officia, nisi, eius nihil nesciunt voluptas reiciendis placeat natus quasi eum, esse quos id.</p>
-        <p>Mollitia, cum fuga repellat minus velit voluptatem maiores nulla iure. Temporibus hic sed ea expedita consequatur reprehenderit minima, at facere, nesciunt culpa autem corporis magnam fuga aut. Magni, optio vero!</p>
-        <p>Placeat ad unde aperiam, culpa mollitia omnis? Architecto laboriosam, non exercitationem ipsum molestias, sequi repudiandae modi, corrupti nostrum quasi autem eum eligendi fuga explicabo veritatis consequatur vel ad? Magni, eius?</p>
-        <p>Assumenda quae reiciendis, rerum odio corporis quia modi eaque similique voluptas quis numquam! At temporibus cum quidem magnam, voluptatum commodi a molestiae dolor asperiores et totam, nobis repellendus sint porro?</p>
-        <p>Totam vel quam quod iure quibusdam voluptatem similique sint pariatur repudiandae nisi! Numquam totam, quas rem consequuntur similique ipsum officiis est, quasi distinctio reprehenderit provident obcaecati harum velit autem atque!</p>
-    </div>
+
 </body>
 </html>
