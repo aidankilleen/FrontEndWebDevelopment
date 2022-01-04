@@ -1,0 +1,14 @@
+/* This is CSS */
+h1 {
+    color: red;
+    font-size: 50px;
+    text-decoration: underline;
+}
+
+div {
+    width: 49%;
+    height: 100px;
+    background-color: lightgreen;
+    float: left;
+    border:1px solid black;
+}
