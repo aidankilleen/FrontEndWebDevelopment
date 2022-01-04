@@ -26,13 +26,12 @@
         // 3. Ajax Call
 
         // javascript allows you to assign to symbols
-        //let $ = 10;
-        //alert($);
+        // let $ = 10;
+        // alert($);
 
         var url = "http://api.citybik.es/v2/networks/dublinbikes";
 
         $(document).ready(function() {
-
             // assign an event using jQuery
             $('#btnTest').on("click", function() {
 
@@ -42,14 +41,9 @@
 
                     for (let i=0; i<data.network.stations.length; i++) {
                         $('#selStations').append(`<option>${data.network.stations[i].name}</option>`);
-
                     }
                 });
-
             });
-
-
-
         });
     </script>
 </body>
