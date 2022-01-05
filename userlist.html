@@ -1,10 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
+    <style>
+        #dlgAddUser {
+            display: none;
+        }
+    </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
     <script>
@@ -16,11 +23,11 @@
                     <td>${user.id}</td>
                     <td>${user.name}</td>
                     <td>${user.email}</td>
-                    <td><input type="checkbox" id="chkActive_${user.id}" disabled ${user.active ? "checked": ""}></td>
+                    <td><input type="checkbox" id="chkActive_${user.id}" disabled ${user.active ? "checked" : ""}></td>
                     <td><button id="btnDelete_${user.id}" class="btnDelete">Delete</button></td>
                     <td><button id="btnEdit_${user.id}" class="btnEdit">Edit</button></td>
-                    <td><button id="btnSave_${user.id}" class="btnSave">Save</button></td>
-                    <td><button id="btnCancel_${user.id}" class="btnCancel">Cancel</button></td>
+                    <td><button id="btnSave_${user.id}" class="btnSave" disabled>Save</button></td>
+                    <td><button id="btnCancel_${user.id}" class="btnCancel" disabled>Cancel</button></td>
                 </tr>`);
         }
 
@@ -29,91 +36,174 @@
 
             return id;
         }
-        $(document).ready(function() {
+
+        function resetDialog() {
+            $('#dlgAddUser').css("display", "none");
+            $('#txtName').val("");
+            $('#txtEmail').val("");
+            $('#chkActive').prop("checked", false);
+        }
+
+        $(document).ready(function () {
             console.log("document ready");
-            $.getJSON(url, function(data) {
+            $('#btnAddUser').on("click", function () {
+                $('#dlgAddUser').css("display", "block");
+            });
+
+            $('#btnSave').on("click", function () {
+
+                let name = $('#txtName').val();
+                let email = $('#txtEmail').val();
+                let active = $('#chkActive').prop("checked");
+
+                let newUser = {
+                    name: name,
+                    email: email,
+                    active: active
+                };
+
+                $.ajax({
+                    url: url,
+                    method: "POST",
+                    contentType: "application/json",
+                    data: JSON.stringify(newUser),
+                    success: function (addedUser) {
+                        addUserToTable("tblUsers", addedUser);
+                        resetDialog()
+                    },
+                    error: function (error) {
+                        alert("error");
+                    }
+                })
+            });
+
+            $('#btnCancel').on("click", function () {
+                resetDialog();
+            });
+
+            $(document).on("click", ".btnDelete", function (evt) {
+
+                let id = getIdFromEvent(evt);
+
+                if (confirm(`Are you sure you want to delete ${id}`)) {
+                    // create an ajax call to delete the user
+                    $.ajax({
+                        url: `${url}/${id}`,
+                        method: "DELETE",
+                        success: function () {
+                            $(`#tr_${id}`).remove();
+                        },
+                        error: function (error) {
+                            alert(error)
+                        }
+                    })
+
+                }
+            });
+            $(document).on("click", ".btnEdit", function (evt) {
+
+                let id = getIdFromEvent(evt);
+
+                let originalName = $(`#tr_${id} td:nth-child(2)`).html();
+                $(`#tr_${id} td:nth-child(2)`).html(`
+    <input 
+        id="txtName_${id}" 
+        value="${originalName}"
+        data-originalValue="${originalName}"
+    >`);
+
+                let originalEmail = $(`#tr_${id} td:nth-child(3)`).html();
+                $(`#tr_${id} td:nth-child(3)`).html(`
+    <input 
+        id="txtEmail_${id}" 
+        value="${originalEmail}"
+        data-originalValue="${originalEmail}">`);
+
+                let originalActive = $(`#chkActive_${id}`).prop("checked");
+                $(`#chkActive_${id}`).attr("data-originalValue", originalActive);
+                $(`#chkActive_${id}`).removeAttr("disabled");
+
+                $(`#btnSave_${id}`).removeAttr("disabled");
+                $(`#btnCancel_${id}`).removeAttr("disabled");
+                $(`#btnEdit_${id}`).attr("disabled", true);
+
+            });
+
+            $(document).on("click", ".btnSave", function (evt) {
+                let id = getIdFromEvent(evt);
+
+                let editedName = $(`#txtName_${id}`).val();
+                let editedEmail = $(`#txtEmail_${id}`).val();
+                let editedActive = $(`#chkActive_${id}`).prop("checked");
+
+                let editedUser = {
+                    id: id,
+                    name: editedName,
+                    email: editedEmail,
+                    active: editedActive
+                };
+
+                $.ajax({
+                    url: `${url}/${id}`,
+                    method: "PUT",
+                    contentType: "application/json",
+                    data: JSON.stringify(editedUser),
+                    success: function () {
+                        $(`#tr_${id} td:nth-child(2)`).html(`${editedName}`);
+                        $(`#tr_${id} td:nth-child(3)`).html(`${editedEmail}`);
+                        $(`#chkActive_${id}`).attr("disabled", true);
+
+                        $(`#btnSave_${id}`).attr("disabled", true);
+                        $(`#btnCancel_${id}`).attr("disabled", true);
+                        $(`#btnEdit_${id}`).attr("disabled", false);
+
+                    },
+                    error: function (error) {
+                        alert(error);
+                    }
+                });
+            });
+
+
+            $(document).on("click", ".btnCancel", function (evt) {
+                let id = getIdFromEvent(evt);
+
+                // restore the original values (get rid of edit box(s))
+                let originalName = $(`#txtName_${id}`).attr("data-originalValue");
+                $(`#tr_${id} td:nth-child(2)`).html(`${originalName}`);
+                let originalEmail = $(`#txtEmail_${id}`).attr("data-originalValue");
+                $(`#tr_${id} td:nth-child(3)`).html(`${originalEmail}`);
+
+                let originalActive = $(`#chkActive_${id}`).attr("data-originalValue");
+                $(`#chkActive_${id}`).prop("checked", originalActive == "true");
+
+                // disable the checkbox again
+                $(`#chkActive_${id}`).attr("disabled", true);
+
+                $(`#btnSave_${id}`).attr("disabled", true);
+                $(`#btnCancel_${id}`).attr("disabled", true);
+                $(`#btnEdit_${id}`).attr("disabled", false);
+
+            });
+
+            $.getJSON(url, function (data) {
                 users = data;
-                for (let i=0; i<users.length; i++) {
+                for (let i = 0; i < users.length; i++) {
                     console.log("adding user to table");
                     addUserToTable("tblUsers", users[i]);
                 }
                 console.log("adding event handler to all btnDelete buttons");
-                $('.btnDelete').on("click", function(evt) {
-
-                    let id = getIdFromEvent(evt);
-
-                    if (confirm(`Are you sure you want to delete ${id}`)) {
-                        // create an ajax call to delete the user
-                        $.ajax({
-                            url: `${url}/${id}`, 
-                            method: "DELETE", 
-                            success: function() {
-                                $(`#tr_${id}`).remove();
-                            }, 
-                            error: function (error) {
-                                alert (error)
-                            }
-                        })
-
-                    }
-                });
-                $('.btnEdit').on("click", function(evt) {
-
-                    let id = getIdFromEvent(evt);
-
-                    let originalName = $(`#tr_${id} td:nth-child(2)`).html();
-                    $(`#tr_${id} td:nth-child(2)`).html(`<input id="txtName_${id}" value="${originalName}">`);
-
-                    let originalEmail = $(`#tr_${id} td:nth-child(3)`).html();
-                    $(`#tr_${id} td:nth-child(3)`).html(`<input id="txtEmail_${id}" value="${originalEmail}">`);
-
-                    $(`#chkActive_${id}`).removeAttr("disabled");
-
-                });
-
-                $('.btnSave').on("click", function(evt) {
-                    let id = getIdFromEvent(evt);
-
-                    let editedName = $(`#txtName_${id}`).val();
-                    let editedEmail = $(`#txtEmail_${id}`).val();
-                    let editedActive = $(`#chkActive_${id}`).prop("checked");
-
-                    let editedUser = {
-                        id: id, 
-                        name: editedName, 
-                        email: editedEmail, 
-                        active: editedActive
-                    };
-
-                    $.ajax({
-                        url: `${url}/${id}`, 
-                        method: "PUT", 
-                        contentType: "application/json", 
-                        data: JSON.stringify(editedUser), 
-                        success: function() {
-                            $(`#tr_${id} td:nth-child(2)`).html(`${editedName}`);
-                            $(`#tr_${id} td:nth-child(3)`).html(`${editedEmail}`);
-                            $(`#chkActive_${id}`).attr("disabled", true);
-                        }, 
-                        error: function(error) {
-                            alert(error);
-                        }
-                    });
-                });
-
-                $('.btnCancel').on("click", function(evt) {
-                    let id = getIdFromEvent(evt);
-
-                    alert("cancel");
-                });
 
             });
             console.log("document ready completed");
         });
     </script>
 </head>
+
 <body>
 
+    <button id="btnAddUser">Add User</button>
+    <hr>
     <table id="tblUsers">
         <thead>
             <tr>
@@ -128,5 +218,15 @@
         </tbody>
     </table>
 
+
+    <div id="dlgAddUser">
+        <input id="txtName" placeholder="Enter a name"><br>
+        <input id="txtEmail" placeholder="Enter an email"><br>
+        Active<input type="checkbox" id="chkActive"><br>
+        <button id="btnSave">Save</button>
+        <button id="btnCancel">Cancel</button>
+    </div>
+
 </body>
+
 </html>
