@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <script>
+        let url = "http://localhost:3000/users";
+        let users = [];
+
+        function addUserToTable(tableId, user) {
+            $(`#${tableId} tbody`).append(`<tr id="tr_${user.id}">
+                    <td>${user.id}</td>
+                    <td>${user.name}</td>
+                    <td>${user.email}</td>
+                    <td><input type="checkbox" id="chkActive_${user.id}" disabled ${user.active ? "checked": ""}></td>
+                    <td><button id="btnDelete_${user.id}" class="btnDelete">Delete</button></td>
+                    <td><button id="btnEdit_${user.id}" class="btnEdit">Edit</button></td>
+                    <td><button id="btnSave_${user.id}" class="btnSave">Save</button></td>
+                    <td><button id="btnCancel_${user.id}" class="btnCancel">Cancel</button></td>
+                </tr>`);
+        }
+
+        function getIdFromEvent(evt) {
+            let id = evt.currentTarget.id.split("_")[1];
+
+            return id;
+        }
+        $(document).ready(function() {
+            console.log("document ready");
+            $.getJSON(url, function(data) {
+                users = data;
+                for (let i=0; i<users.length; i++) {
+                    console.log("adding user to table");
+                    addUserToTable("tblUsers", users[i]);
+                }
+                console.log("adding event handler to all btnDelete buttons");
+                $('.btnDelete').on("click", function(evt) {
+
+                    let id = getIdFromEvent(evt);
+
+                    if (confirm(`Are you sure you want to delete ${id}`)) {
+                        // create an ajax call to delete the user
+                        $.ajax({
+                            url: `${url}/${id}`, 
+                            method: "DELETE", 
+                            success: function() {
+                                $(`#tr_${id}`).remove();
+                            }, 
+                            error: function (error) {
+                                alert (error)
+                            }
+                        })
+
+                    }
+                });
+                $('.btnEdit').on("click", function(evt) {
+
+                    let id = getIdFromEvent(evt);
+
+                    let originalName = $(`#tr_${id} td:nth-child(2)`).html();
+                    $(`#tr_${id} td:nth-child(2)`).html(`<input id="txtName_${id}" value="${originalName}">`);
+
+                    let originalEmail = $(`#tr_${id} td:nth-child(3)`).html();
+                    $(`#tr_${id} td:nth-child(3)`).html(`<input id="txtEmail_${id}" value="${originalEmail}">`);
+
+                    $(`#chkActive_${id}`).removeAttr("disabled");
+
+                });
+
+                $('.btnSave').on("click", function(evt) {
+                    let id = getIdFromEvent(evt);
+
+                    let editedName = $(`#txtName_${id}`).val();
+                    let editedEmail = $(`#txtEmail_${id}`).val();
+                    let editedActive = $(`#chkActive_${id}`).prop("checked");
+
+                    let editedUser = {
+                        id: id, 
+                        name: editedName, 
+                        email: editedEmail, 
+                        active: editedActive
+                    };
+
+                    $.ajax({
+                        url: `${url}/${id}`, 
+                        method: "PUT", 
+                        contentType: "application/json", 
+                        data: JSON.stringify(editedUser), 
+                        success: function() {
+                            $(`#tr_${id} td:nth-child(2)`).html(`${editedName}`);
+                            $(`#tr_${id} td:nth-child(3)`).html(`${editedEmail}`);
+                            $(`#chkActive_${id}`).attr("disabled", true);
+                        }, 
+                        error: function(error) {
+                            alert(error);
+                        }
+                    });
+                });
+
+                $('.btnCancel').on("click", function(evt) {
+                    let id = getIdFromEvent(evt);
+
+                    alert("cancel");
+                });
+
+            });
+            console.log("document ready completed");
+        });
+    </script>
+</head>
+<body>
+
+    <table id="tblUsers">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Active</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+
+</body>
+</html>
