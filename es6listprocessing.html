@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>ES6 List Processing</h1>
+
+
+    <script>
+
+        let list = [1, 4, 2, 6, 5, 9, 10, 3, 8, 4, 9, 10, 2, 4, 3, 2];
+        //for (let i=0; i<list.length; i++)
+
+        // iterate through a list
+        list.forEach((item)=>{
+            console.log(item);
+        });
+
+        // let index = list.findIndex(6);
+        let index = list.findIndex((item) => {
+            if (item == 6) {
+                return true;
+            } else {
+                return false;
+            }
+        });
+
+        console.log(index);
+        index = list.findIndex(item => item == 6);
+        console.log(index);
+
+        let subset = list.filter(item => item <= 5);
+        console.log(subset);
+
+        let users = [  
+            {"id":10, "name":"Zoltar", "email":"alice@gmail.com", "active":true},  
+            {"id":2, "name":"Bob", "email":"bob@gmail.com", "active":true},  
+            {"id":37, "name":"Xavier", "email":"carol@gmail.com", "active":true},  
+            {"id":14, "name":"Dan", "email":"dan@gmail.com", "active":false},  
+            {"id":5, "name":"Yvonne", "email":"eve@gmail.com", "active":false}
+        ];
+
+        users.forEach(user => console.log(user.name));
+
+        let activeUsers = users.filter(user => user.active);
+        activeUsers.forEach(user=>console.log(user.name));
+
+        // you can chain the operations together
+        users.filter(user=>user.active)
+             .forEach(user=> console.log(user.name));
+
+        let sorted1 = list.sort((a, b)=> {
+            if (a > b) {
+                return 1;
+            } else if (a == b) {
+                return 0;
+            } else {
+                return -1;
+            }
+        });
+
+        sorted2 = list.sort((a, b)=>{
+            return a - b;
+        });
+
+        sorted3 = list.sort((a, b) => a - b);
+
+        console.log(sorted1);
+        console.log(sorted2);
+        console.log(sorted3);
+
+        list.filter(item=>item<6)
+            .sort((a, b) => b - a)
+            .forEach(item=>console.log(item));
+
+        let sortedUsers = users.sort((a, b) => a.name.localeCompare(b.name));
+        console.log(sortedUsers);
+
+        let sortByName = (a, b) => a.name.localeCompare(b.name);
+        sortedUsers = users.sort(sortByName);
+        console.log(sortedUsers);
+
+        let sortById = (a, b) => a.id - b.id;
+        sortedUsers = users.sort(sortById);
+        console.log(sortedUsers);
+
+    </script>
+</body>
+</html>
