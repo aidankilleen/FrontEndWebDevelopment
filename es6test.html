@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>ES6 Features</h1>
+
+    <script>
+
+        // old: var name = "Aidan";
+
+        // new:
+        //let name = "Aidan";
+        const PI = 3.14159;
+
+        // new: can't overwrite a constant
+        //PI = 4;
+
+        console.log(PI);
+
+        if (true) {
+            
+            //console.log(`testing a var ${v}`);
+            //console.log(`testing a let ${v2}`);
+
+            //var v = 100; // var variables are hoisted
+
+            let v2 = 100; // normal scoping rules
+        }
+
+        // destructuring & spread operator
+        let list = [1, 4, 6, 8, 10];
+        let [a, b, ...rest] = list;
+
+        console.log(a);
+        console.log(b);
+        console.log(rest);
+
+        // destructuring works with objects too!
+
+        let o = {
+            id: 1, 
+            name: "Alice", 
+            email: "alice@gmail.com", 
+            active: false, 
+            classes: [
+                {name:"Java"}, 
+                {name:"Python"}, 
+                {name:"JavaScript"}
+            ]
+        }
+
+        let {name, email, ...restOfObject} = o;
+
+        console.log(name);
+        console.log(email);
+        console.log(restOfObject);
+
+        let {classes} = o;
+
+        console.log(classes);
+
+        let c = o.classes;
+
+
+        // this reference
+        let obj = {
+            id:1, 
+            message: "Hello",
+
+            display: function() {
+                console.log(this.message);
+            }, 
+            displayLaterOriginal: function() {
+                let _this = this;
+                setTimeout(function() {
+                    // "this" is not obj it's now 
+                    // the callback function
+                    console.log(_this.message);
+                }, 2000);
+            }, 
+            displayLaterEs6: function () {
+                setTimeout(() => {
+                    console.log(`ES6:${this.message}`);
+                }, 1000);
+            }
+        }
+        console.log(obj.message);
+        obj.display();
+        obj.displayLaterOriginal();
+        obj.displayLaterEs6();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+</html>
