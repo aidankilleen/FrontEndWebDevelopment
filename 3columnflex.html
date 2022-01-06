@@ -52,13 +52,51 @@
             flex-shrink: 1;
             background-color: lightgreen;
         }
+
+        @media (max-width: 768px) {
+
+            .header {
+                flex: auto 1 1;
+            }
+            .left {
+                flex: auto 1 1;
+            }
+            .center {
+                flex: auto 1 1;
+
+                flex-direction: column;
+            }
+            .main {
+                flex: auto 1 1;
+            }
+            .right {
+                flex: auto 1 1;
+            }
+            .footer {
+                flex: auto 1 1;
+            }
+
+        }
+
     </style>
 </head>
 <body class="body">
     <div class="header">Header</div>
     <div class="center">
         <div class="left">Left</div>
-        <div class="main">Main</div>
+        <div class="main">
+            <h1>Main</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque mollitia saepe qui unde voluptatum tempora ipsa inventore provident dolorum necessitatibus voluptas, dicta dolore nostrum et facilis tempore! Officia, voluptates quod!</p>
+            <p>Quidem fuga delectus molestias nihil optio exercitationem error omnis quisquam ex vero odit velit, modi quo sint inventore commodi numquam iure, placeat nobis in possimus saepe nam mollitia! Consequatur, culpa.</p>
+            <p>Sint vero mollitia, dignissimos quam exercitationem voluptatibus cumque ipsam laboriosam omnis voluptas nulla modi aspernatur dolorem voluptatem eos sed culpa aut error hic ad! Beatae quibusdam laudantium consequuntur impedit fugiat?</p>
+            <p>Incidunt esse omnis excepturi illo laudantium sunt doloribus ratione sed reiciendis facere. Fuga ut delectus obcaecati? Maiores nemo exercitationem sit, voluptates adipisci quasi, at, itaque porro ab alias libero accusantium.</p>
+            <p>Alias beatae, eum magni sit facilis facere repellat reprehenderit impedit exercitationem sed! Repellendus porro sed rem magnam vel rerum, adipisci ex a illum aspernatur, quia nemo nihil consectetur impedit ab!</p>
+            <p>Provident facere, at nihil maxime in expedita dolores dicta voluptas eum pariatur quaerat doloremque accusantium, debitis, id optio adipisci dolor consequatur? Delectus ullam ab magni ea, eaque repellat rem sed!</p>
+            <p>Quam commodi obcaecati consequuntur ipsa. Asperiores quidem sunt suscipit voluptates placeat a, illum nisi nemo esse omnis eaque voluptate ex sint quisquam temporibus odit, dicta necessitatibus facere cumque aspernatur ipsum!</p>
+            <p>Cum ratione corporis accusantium maiores, placeat ullam repellendus. Cum atque totam, sunt maiores facere quisquam aliquid saepe temporibus explicabo aspernatur eos illo repellendus illum sequi? Ipsa odio nihil soluta perferendis.</p>
+            <p>Ullam esse nam minus nulla facilis fugiat, id at, voluptate vitae recusandae distinctio? Rem voluptatem excepturi alias nostrum laboriosam. Delectus assumenda doloremque dolorem magni corporis earum hic aliquam voluptatibus! Ex?</p>
+            <p>Eius in quos non dolorem enim quisquam veritatis libero alias. Facere eos necessitatibus sequi, saepe odit aspernatur cupiditate dolores quis. Voluptatum vitae consequuntur, voluptatem libero rerum neque. Expedita, alias assumenda?</p>
+        </div>
         <div class="right">Right</div>
     </div>
     <div class="footer">Footer</div>
