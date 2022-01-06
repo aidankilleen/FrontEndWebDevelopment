@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .body {
+            display: flex;
+            flex-direction: column;
+        }
+        .header {
+            flex-basis: 20vh;
+            flex-grow: 1;
+            flex-shrink: 1;
+            background-color: lightgreen;
+        }
+        .center {
+            flex-basis:70vh;
+            flex-grow: 1;
+            flex-shrink: 1;
+            background-color: lightblue;
+
+            display: flex;
+            flex-direction: row;
+        }
+        .left {
+            flex-basis: 100px;
+            flex-grow: 0;
+            flex-shrink: 0;
+
+            background-color: lightcoral;
+            border: 1px solid black;
+        }
+        .main {
+            flex-basis: 60%;
+            flex-grow: 1;
+            flex-shrink: 1;
+            background-color: lightgray;
+            padding: 20px;
+        }
+        .right {
+            flex-basis: 10%;
+            flex-grow: 1;
+            flex-shrink: 1;
+            background-color: lightyellow;
+        }
+        .footer {
+            flex-basis: 10vh;
+            flex-grow: 1;
+            flex-shrink: 1;
+            background-color: lightgreen;
+        }
+    </style>
+</head>
+<body class="body">
+    <div class="header">Header</div>
+    <div class="center">
+        <div class="left">Left</div>
+        <div class="main">Main</div>
+        <div class="right">Right</div>
+    </div>
+    <div class="footer">Footer</div>
+</body>
+</html>
