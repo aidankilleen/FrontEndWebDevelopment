@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // can't interact with #main here
+
+        let div = document.getElementById("main");
+
+        console.log(div);
+    </script>
+</head>
+<body>
+
+    <div id="main">
+
+        <button class="btnTest" id="btn1">Test</button>
+        <button class="btnTest" id="btn2">Test</button>
+        <button class="btnTest" id="btn3">Test</button>
+        <button class="btnTest" id="btn4">Test</button>
+        <button class="btnTest" id="btn5">Test</button>
+    </div>
+
+    <button id="btnAppend">Append</button>
+    <div id="container"></div>
+
+    <button onclick="onAppend()">Append Using Onclick</button>
+
+    <script>
+
+        function onAppend() {
+
+            let div = document.querySelector("#container");
+            div.innerHTML = div.innerHTML + `<h2>Appended</h2>`;
+        }
+
+        let container = document.querySelector("#container");
+
+        container.innerHTML = `<h1>Test Heading!!!</h1>`;
+
+        let button = document.getElementById("btnAppend");
+        button.addEventListener("click", function() {
+
+            alert("inline event handler function");
+        });
+
+
+
+
+        /*
+        let heading = document.createElement("h1");
+        heading.innerHTML = "Test Heading";
+        container.appendChild(heading);
+        */
+
+
+
+
+
+        // can interact with #main here
+        div = document.getElementById("main");
+
+        //$(".btnTest").
+
+        document.query
+        console.log(div);
+
+        let buttons = document.querySelectorAll(".btnTest");
+
+        console.log(buttons);
+
+        buttons.forEach(button=>{
+            button.addEventListener("click", function(evt) {
+
+                alert(`you clicked ${evt.currentTarget.id}`)
+            });
+        })
+
+        // ajax ->  fetch
+
+        // event handling - addEventListener
+
+        // dom manipulation
+
+        // select one or more items from the page
+        // using css compatible selector syntax
+
+        // document.querySelectorAll(".btnTest");
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+        $(document).ready(function(){
+            // document is ready
+        })
+*/
+
+
+
+    </script>
+
+
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Order Table</h1>
+
+    <select id="selColourFilter" onchange="refreshTable()">
+        <option>All</option>
+        <option>red</option>
+        <option selected>green</option>
+        <option>blue</option>
+    </select>
+
+    <table id="tblOrders">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>User</th>
+                <th>Colour</th>
+                <th>Quantity</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <script>
+
+        let url = "http://localhost:3000/orders";
+        let orders = [];
+
+        function addOrderToTable(tableId, order) {
+            let tbody = document.querySelector(`#${tableId} tbody`);
+            tbody.innerHTML += `<tr>
+                                    <td>${order.Date}</td>
+                                    <td>${order.User}</td>
+                                    <td>${order.Colour}</td>
+                                    <td>${order.Quantity}</td>
+                                </tr>`;
+        }
+
+        function populateFilter() {
+            // clear the selectBox 
+            let selColourFilter = document.getElementById("selColourFilter");
+            selColourFilter.innerHTML = "";
+
+            // get a distinct list of the colours
+            let distinctList = orders.reduce((result, order)=>{
+
+                // if orcer.Colour is not in the result list - add it to the list
+                if (!result.includes(order.Colour)) {
+                    result.push(order.Colour);
+                }
+                return result;
+
+            }, []);
+            console.log(distinctList);
+            // add them to the selectBox
+
+
+            distinctList.forEach(colour=> selColourFilter.innerHTML += `<option>${colour}</option>`);
+
+
+
+        }
+        function refreshTable() {
+            let tbody = document.querySelector(`#tblOrders tbody`);
+            tbody.innerHTML = "";
+            orders
+                .filter(order => {
+                    let filter = document.getElementById("selColourFilter");
+                    
+                    if (filter.value == "All") {
+                        return true;
+                    } else {
+                        return order.Colour == filter.value;
+                    }
+                })
+                .forEach(order => addOrderToTable("tblOrders", order));
+        }
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                orders = data;
+                populateFilter();
+                refreshTable();
+            });
+
+
+    </script>
+</body>
+</html>
