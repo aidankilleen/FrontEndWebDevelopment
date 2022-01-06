@@ -9,6 +9,22 @@
 <body>
     <h1>Order Table</h1>
 
+    <select id="selMonthFilter" onchange="refreshTable()">
+        <option value="All">All</option>
+        <option value="1">Jan</option>
+        <option value="2">Feb</option>
+        <option value="3">Mar</option>
+        <option value="4">Apr</option>
+        <option value="5">May</option>
+        <option value="6">Jun</option>
+        <option value="7">Jul</option>
+        <option value="8">Aug</option>
+        <option value="9">Sep</option>
+        <option value="10">Oct</option>
+        <option value="11">Nov</option>
+        <option value="12">Dec</option>
+    </select>
+
     <select id="selColourFilter" onchange="refreshTable()">
         <option>All</option>
         <option>red</option>
@@ -46,12 +62,12 @@
         function populateFilter() {
             // clear the selectBox 
             let selColourFilter = document.getElementById("selColourFilter");
-            selColourFilter.innerHTML = "";
+            selColourFilter.innerHTML = "<option>All</option>";
 
             // get a distinct list of the colours
-            let distinctList = orders.reduce((result, order)=>{
+            let distinctList = orders.reduce((result, order) => {
 
-                // if orcer.Colour is not in the result list - add it to the list
+                // if order.Colour is not in the result list - add it to the list
                 if (!result.includes(order.Colour)) {
                     result.push(order.Colour);
                 }
@@ -61,16 +77,23 @@
             console.log(distinctList);
             // add them to the selectBox
 
-
             distinctList.forEach(colour=> selColourFilter.innerHTML += `<option>${colour}</option>`);
 
-
-
         }
+
+        let users = [
+            {id:1, name:"Alice", email:"alice@gmail.com", active: true }, 
+            {id:2, name:"Bob", email:"bob@gmail.com", active: true }, 
+            {id:3, name:"Carol", email:"carol@gmail.com", active: false }, 
+            {id:4, name:"Dan", email:"dan@gmail.com", active: true }, 
+        ]
         function refreshTable() {
+
+        
             let tbody = document.querySelector(`#tblOrders tbody`);
             tbody.innerHTML = "";
             orders
+                
                 .filter(order => {
                     let filter = document.getElementById("selColourFilter");
                     
@@ -80,12 +103,40 @@
                         return order.Colour == filter.value;
                     }
                 })
+                .filter(order => {
+                    let filter = document.getElementById("selMonthFilter");
+
+                    if (filter.value == "All") {
+                        return true;
+                    } else {
+                        // is the date in this month??
+                        return order.dtDate.getMonth() + 1 == filter.value;
+                    }
+                })
                 .forEach(order => addOrderToTable("tblOrders", order));
         }
         fetch(url)
             .then(response => response.json())
             .then(data => {
-                orders = data;
+                orders = data.map((order)=> {
+                    // modify the order in some way
+
+                    // look up the order.User
+                    let userIndex = users.findIndex(user=>user.id == order.User);
+                    let user = users[userIndex];
+
+                    order.UserId = user.id;
+                    order.User = user.name;
+
+                    // convert order Date string into an actual date
+
+                    let pieces = order.Date.split("/");
+                    console.log(pieces);
+                    order.dtDate = new Date(pieces[2], parseInt(pieces[1])-1, pieces[0]);
+                    console.log(order.dtDate);
+
+                    return order;
+                });
                 populateFilter();
                 refreshTable();
             });
