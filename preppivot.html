@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let data = [
+            {
+                "Date": "01/01/2021",
+                "User": 1,
+                "Colour": "red",
+                "Quantity": 10
+            },
+            {
+                "Date": "10/01/2021",
+                "User": 2,
+                "Colour": "red",
+                "Quantity": 12
+            },
+            {
+                "Date": "01/11/2021",
+                "User": 3,
+                "Colour": "red",
+                "Quantity": 14
+            },
+            {
+                "Date": "15/08/2021",
+                "User": 4,
+                "Colour": "green",
+                "Quantity": 15
+            },
+            {
+                "Date": "19/01/2021",
+                "User": 1,
+                "Colour": "red",
+                "Quantity": 16
+            },
+            {
+                "Date": "20/03/2021",
+                "User": 2,
+                "Colour": "red",
+                "Quantity": 20
+            },
+            {
+                "Date": "04/05/2021",
+                "User": 3,
+                "Colour": "green",
+                "Quantity": 1
+            },
+            {
+                "Date": "05/04/2021",
+                "User": 4,
+                "Colour": "red",
+                "Quantity": 20
+            },
+            {
+                "Date": "07/09/2021",
+                "User": 1,
+                "Colour": "red",
+                "Quantity": 9
+            },
+            {
+                "Date": "03/02/0201",
+                "User": 2,
+                "Colour": "green",
+                "Quantity": 14
+            },
+            {
+                "Date": "23/08/2021",
+                "User": 3,
+                "Colour": "red",
+                "Quantity": 23
+            },
+            {
+                "Date": "23/12/2021",
+                "User": 4,
+                "Colour": "red",
+                "Quantity": 21
+            },
+            {
+                "Date": "29/12/2021",
+                "User": 1,
+                "Colour": "green",
+                "Quantity": 20
+            },
+            {
+                "Date": "15/03/2021",
+                "User": 2,
+                "Colour": "orange",
+                "Quantity": 17
+            },
+            {
+                "Date": "16/04/2021",
+                "User": 3,
+                "Colour": "green",
+                "Quantity": 20
+            },
+            {
+                "Date": "25/10/2021",
+                "User": 4,
+                "Colour": "red",
+                "Quantity": 28
+            },
+            {
+                "Date": "10/10/2021",
+                "User": 1,
+                "Colour": "red",
+                "Quantity": 11
+            },
+            {
+                "Date": "05/11/2021",
+                "User": 2,
+                "Colour": "green",
+                "Quantity": 10
+            },
+            {
+                "Date": "09/11/2021",
+                "User": 3,
+                "Colour": "orange",
+                "Quantity": 9
+            },
+            {
+                "Date": "02/01/2021",
+                "User": 1,
+                "Colour": "blue",
+                "Quantity": 10
+            },
+            {
+                "Date": "11/01/2021",
+                "User": 2,
+                "Colour": "orange",
+                "Quantity": 12
+            },
+            {
+                "Date": "02/11/2021",
+                "User": 3,
+                "Colour": "orange",
+                "Quantity": 14
+            },
+            {
+                "Date": "16/08/2021",
+                "User": 4,
+                "Colour": "orange",
+                "Quantity": 15
+            },
+            {
+                "Date": "20/01/2021",
+                "User": 1,
+                "Colour": "blue",
+                "Quantity": 16
+            },
+            {
+                "Date": "21/03/2021",
+                "User": 2,
+                "Colour": "blue",
+                "Quantity": 20
+            },
+            {
+                "Date": "05/05/2021",
+                "User": 3,
+                "Colour": "red",
+                "Quantity": 1
+            },
+            {
+                "Date": "06/04/2021",
+                "User": 4,
+                "Colour": "red",
+                "Quantity": 20
+            },
+            {
+                "Date": "08/09/2021",
+                "User": 1,
+                "Colour": "red",
+                "Quantity": 9
+            },
+            {
+                "Date": "04/02/0201",
+                "User": 2,
+                "Colour": "orange",
+                "Quantity": 14
+            },
+            {
+                "Date": "24/08/2021",
+                "User": 3,
+                "Colour": "red",
+                "Quantity": 23
+            },
+            {
+                "Date": "24/12/2021",
+                "User": 4,
+                "Colour": "red",
+                "Quantity": 21
+            },
+            {
+                "Date": "30/12/2021",
+                "User": 1,
+                "Colour": "green",
+                "Quantity": 20
+            },
+            {
+                "Date": "16/03/2021",
+                "User": 2,
+                "Colour": "blue",
+                "Quantity": 17
+            },
+            {
+                "Date": "17/04/2021",
+                "User": 3,
+                "Colour": "red",
+                "Quantity": 20
+            },
+            {
+                "Date": "26/10/2021",
+                "User": 4,
+                "Colour": "green",
+                "Quantity": 28
+            },
+            {
+                "Date": "11/10/2021",
+                "User": 1,
+                "Colour": "green",
+                "Quantity": 11
+            },
+            {
+                "Date": "06/11/2021",
+                "User": 2,
+                "Colour": "red",
+                "Quantity": 10
+            },
+            {
+                "Date": "10/11/2021",
+                "User": 3,
+                "Colour": "green",
+                "Quantity": 9
+            },
+            {
+                "Date": "03/01/2021",
+                "User": 1,
+                "Colour": "red",
+                "Quantity": 10
+            },
+            {
+                "Date": "12/01/2021",
+                "User": 2,
+                "Colour": "orange",
+                "Quantity": 12
+            },
+            {
+                "Date": "03/11/2021",
+                "User": 1,
+                "Colour": "green",
+                "Quantity": 14
+            },
+            {
+                "Date": "17/08/2021",
+                "User": 2,
+                "Colour": "green",
+                "Quantity": 15
+            },
+            {
+                "Date": "21/01/2021",
+                "User": 3,
+                "Colour": "red",
+                "Quantity": 16
+            },
+            {
+                "Date": "22/03/2021",
+                "User": 2,
+                "Colour": "green",
+                "Quantity": 20
+            },
+            {
+                "Date": "06/05/2021",
+                "User": 1,
+                "Colour": "orange",
+                "Quantity": 1
+            },
+            {
+                "Date": "07/04/2021",
+                "User": 3,
+                "Colour": "orange",
+                "Quantity": 20
+            },
+            {
+                "Date": "09/09/2021",
+                "User": 1,
+                "Colour": "red",
+                "Quantity": 9
+            },
+            {
+                "Date": "05/02/0201",
+                "User": 2,
+                "Colour": "blue",
+                "Quantity": 14
+            },
+            {
+                "Date": "25/08/2021",
+                "User": 4,
+                "Colour": "red",
+                "Quantity": 23
+            },
+            {
+                "Date": "25/12/2021",
+                "User": 3,
+                "Colour": "blue",
+                "Quantity": 21
+            },
+            {
+                "Date": "31/12/2021",
+                "User": 2,
+                "Colour": "red",
+                "Quantity": 20
+            },
+            {
+                "Date": "17/03/2021",
+                "User": 1,
+                "Colour": "green",
+                "Quantity": 17
+            },
+            {
+                "Date": "18/04/2021",
+                "User": 2,
+                "Colour": "red",
+                "Quantity": 20
+            },
+            {
+                "Date": "27/10/2021",
+                "User": 3,
+                "Colour": "red",
+                "Quantity": 28
+            },
+            {
+                "Date": "12/10/2021",
+                "User": 4,
+                "Colour": "red",
+                "Quantity": 11
+            },
+            {
+                "Date": "07/11/2021",
+                "User": 3,
+                "Colour": "green",
+                "Quantity": 10
+            },
+            {
+                "Date": "11/11/2021",
+                "User": 2,
+                "Colour": "red",
+                "Quantity": 9
+            }
+        ]
+    </script>
+
+    <script>
+
+        let result = data.reduce((prev, current, index, list)=>{
+            console.log(current);
+
+            if (prev.count) {
+                prev.count++
+            } else {
+                prev.count = 1;
+            }
+            return prev;
+        }, {});
+
+        console.log(result);
+
+
+    </script>
+</body>
+
+</html>
