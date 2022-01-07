@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .test-div {
+            width: 100px;
+            height: 100px;
+            border: 1px solid black;
+            background-color: lightcoral;
+            transition: all 0.3s;
+        }
+        .test-div:hover {
+            width: 150px;
+            height: 150px;
+            background-color: red;
+            transform: rotate(30deg);
+        }
+
+
+        .box {
+            width:50px;
+            height:50px;
+            border: 1px solid black;
+            background-color: lightgreen;
+            transition: all 3s;
+            transition-timing-function: linear;
+        }
+        #box1 {
+            transition-timing-function: ease-in-out;
+        }
+        #box2 {
+            transition-timing-function:ease-in;
+        }
+        #box3 {
+            transition-timing-function: ease-out;
+        }
+        #box4 {
+            transition-timing-function: steps(10);
+        }
+        #box5 {
+            transition-timing-function: step-end;
+        }
+        #box6 {
+            transition-timing-function: cubic-bezier(0.6, 0.33, 0.49, 1.21);
+        }
+
+        .container:hover .box {
+            transform:translateX(400px);
+        }
+
+    </style>
+</head>
+<body>
+    
+    <div class="test-div" id="test-div">
+        Test Div
+    </div>
+
+    <hr>
+
+    <div class="container">
+        <div class="box" id="box1"></div>
+        <div class="box" id="box2"></div>
+        <div class="box" id="box3"></div>
+        <div class="box" id="box4"></div>
+        <div class="box" id="box5"></div>
+        <div class="box" id="box6"></div>
+    </div>
+
+
+
+    <script>
+        let div = document.getElementById("test-div");
+
+        div.addEventListener("click", function() {
+            alert("something happened");
+        });
+    </script>
+
+</body>
+</html>
