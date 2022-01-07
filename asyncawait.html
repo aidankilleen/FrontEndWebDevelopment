@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <script type="module">
+
+        let usersUrl = "http://localhost:3000/users";
+        let ordersUrl = "http://localhost:3000/orders";
+
+        let users = await fetch(usersUrl)
+            .then(response=>response.json());
+        let orders = await fetch(ordersUrl)
+            .then(response=>response.json());
+
+        orders = orders.map(order=>{
+            order.userId = order.User;
+            let index = users.findIndex(user=>user.id == order.User);
+            order.userName = users[index].name;
+            return order;
+        });
+
+        console.log(orders);
+
+
+
+    </script>
+</body>
+</html>
