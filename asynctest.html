@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script type="module">
+
+        let name = "Aidan";
+    </script>
+
+
+    <script type="module">
+
+        console.log(name);
+        
+        // attempt 1 - use a callback function
+        setTimeout(function(){
+            console.log("async operation complete");
+        }, 5000);
+
+
+        // attempt 2 - use a promise
+
+        function doAsyncOperation() {
+
+            let p = new Promise(function(resolve, reject) {
+                setTimeout(function(){
+                    console.log("doAsyncOperation() complete");
+                    resolve("return value from promise");
+                }, 3000);
+            });
+            return p;
+        }
+
+        doAsyncOperation()
+            .then(function(returnValue) {
+
+                console.log("doAsyncOperation.then called");
+                console.log(`returnValue:${returnValue}`);
+
+            });
+
+
+        // attempt 3 - use the async / await keywords
+
+        async function doAsynchronousOperationAsync() {
+
+            let p = new Promise(function(resolve, reject) {
+
+                setTimeout(function(){
+
+                    console.log("Async operation is complete");
+                    resolve("return value from async operation");
+
+                }, 7000);
+            });
+            return p;
+        }
+
+        async function testDoAsynchronousOperationAsync() {
+
+            let answer = await doAsynchronousOperationAsync();
+
+            console.log("await operation complete");
+            console.log(`answer:${answer}`)
+
+        }
+
+        testDoAsynchronousOperationAsync();
+
+        console.log("finished");
+
+        let answer = await doAsynchronousOperationAsync();
+
+        console.log(`the answer is ${answer}`);
+
+    </script>
+
+</body>
+</html>
