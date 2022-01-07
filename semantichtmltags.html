@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            color: black;
+        }
+        span {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <h1>Semantic HTML Tags</h1>
+        <nav id="navbar" class="navbar">Navigation</nav>
+    </header>
+    <aside class="left">
+        <nav>More Navigation</nav>
+    </aside>
+    <hr>
+    <figure>
+        <img src="https://picsum.photos/400/300" alt="some picture" title="some picture">
+        <figcaption>Some picture</figcaption>
+    </figure>
+
+    <main class="main">
+        <article class="article">
+            <section class="section">
+
+                <details>
+                    <summary>Article 1</summary>
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Impedit error cum nam ullam laborum repellendus accusantium obcaecati officia, fuga quisquam incidunt deserunt eum esse, qui veniam sequi! Tempore, cum ipsa.</p>
+                </details>
+
+                <details>
+                    <summary>Article 2</summary>
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Impedit error cum nam ullam laborum repellendus accusantium obcaecati officia, fuga quisquam incidunt deserunt eum esse, qui veniam sequi! Tempore, cum ipsa.</p>
+                </details>
+                <details>
+                    <summary>Article 3</summary>
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Impedit error cum nam ullam laborum repellendus accusantium obcaecati officia, fuga quisquam incidunt deserunt eum esse, qui veniam sequi! Tempore, cum ipsa.</p>
+                </details>
+
+            </section>
+        </article>
+    </main>
+
+    <hr>
+
+    <pre>
+        this 
+        content
+        actually
+        respects          the 
+        whitespace
+    </pre>
+
+    <pre>
+´´´´´´´´´´´´´´´´´´´´´´¶¶¶¶¶¶¶¶¶……..
+´´´´´´´´´´´´´´´´´´´´¶¶´´´´´´´´´´¶¶……
+´´´´´´¶¶¶¶¶´´´´´´´¶¶´´´´´´´´´´´´´´¶¶……….
+´´´´´¶´´´´´¶´´´´¶¶´´´´´¶¶´´´´¶¶´´´´´¶¶…………..
+´´´´´¶´´´´´¶´´´¶¶´´´´´´¶¶´´´´¶¶´´´´´´´¶¶…..
+´´´´´¶´´´´¶´´¶¶´´´´´´´´¶¶´´´´¶¶´´´´´´´´¶¶…..
+´´´´´´¶´´´¶´´´¶´´´´´´´´´´´´´´´´´´´´´´´´´¶¶….
+´´´´¶¶¶¶¶¶¶¶¶¶¶¶´´´´´´´´´´´´´´´´´´´´´´´´¶¶….
+´´´¶´´´´´´´´´´´´¶´¶¶´´´´´´´´´´´´´¶¶´´´´´¶¶….
+´´¶¶´´´´´´´´´´´´¶´´¶¶´´´´´´´´´´´´¶¶´´´´´¶¶….
+´¶¶´´´¶¶¶¶¶¶¶¶¶¶¶´´´´¶¶´´´´´´´´¶¶´´´´´´´¶¶…
+´¶´´´´´´´´´´´´´´´¶´´´´´¶¶¶¶¶¶¶´´´´´´´´´¶¶….
+´¶¶´´´´´´´´´´´´´´¶´´´´´´´´´´´´´´´´´´´´¶¶…..
+´´¶´´´¶¶¶¶¶¶¶¶¶¶¶¶´´´´´´´´´´´´´´´´´´´¶¶….
+´´¶¶´´´´´´´´´´´¶´´¶¶´´´´´´´´´´´´´´´´¶¶….
+´´´¶¶¶¶¶¶¶¶¶¶¶¶´´´´´¶¶´´´´´´´´´´´´¶¶…..
+´´´´´´´´´´´´´´´´´´´´´´´¶¶¶¶¶¶¶¶¶¶¶…….
+    </pre>
+    <hr>
+
+<pre>
+
+    let container = document.querySelector("#container");
+
+    let button = document.getElementById("btnAppend");
+    button.addEventListener("click", function() {
+
+        alert("inline event handler function");
+    });
+
+
+
+</pre>
+
+
+    <aside>
+        Lorem ipsum dolor, <span>sit amet consectetur</span> adipisicing elit. Ex laudantium at illum cum fugit voluptatem ad nesciunt? Obcaecati provident architecto voluptatibus autem dignissimos unde fugiat neque, adipisci molestias alias? Totam!
+    </aside>
+
+    <footer>
+        &copy; 2022 Professional Training Ltd.
+    </footer>
+
+</body>
+</html>

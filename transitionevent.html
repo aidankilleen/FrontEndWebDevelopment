@@ -26,16 +26,13 @@
     </style>
 </head>
 <body>
-    
     <div class="test-div">
         <div class="progress"></div>
     </div>
-
     <script>
         document.querySelector(".progress").addEventListener("transitionend", function() {
             
             let div = document.querySelector(".test-div");
-            
             if (div.style.backgroundColor == "yellow") {
                 div.style.backgroundColor = "lightcoral";
             } else {
