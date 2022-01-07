@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+
+        @keyframes exampleAnimation {
+            0% { background-color: red;}
+            25% { background-color: yellow; }
+            50% {background-color: blue; }
+            75% {background-color: purple; }
+            100% {background-color: red;}
+        }
+        .test-div {
+            height:20vh;
+            background-color: red;
+            animation-name: exampleAnimation;
+            animation-duration: 10s;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+            animation-play-state: paused;
+        }
+    </style>
+</head>
+<body>
+    <input type="button" id="btnAnimation" value="Start"/>
+    <div class="test-div">
+
+    </div>
+    <script>
+        let btn = document.getElementById("btnAnimation");
+        btn.addEventListener("click", function() {
+
+            let div = document.querySelector(".test-div");
+            if (btn.value == "Start") {
+                div.style.animationPlayState = "running";
+                btn.value="Stop";
+            } else {
+                div.style.animationPlayState = "paused";
+                btn.value="Start";
+            }
+        });
+
+    </script>
+</body>
+</html>
