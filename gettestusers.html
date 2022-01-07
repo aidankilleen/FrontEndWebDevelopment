@@ -15,7 +15,6 @@
     </style>
 </head>
 <body>
-
     <main class="grid-container" id="grid-container">
     </main>
 
@@ -24,7 +23,11 @@
         let { results:users } = await fetch(url).then(response=>response.json());
         let grid = document.getElementById("grid-container");
         users.map(user=> {
-            return `<div><img src="${user.picture.large}" title="${user.name.first} ${user.name.last}"></div>`
+            return `
+            <div>
+                <img src="${user.picture.medium}" 
+                    title="${user.name.first} ${user.name.last}">
+            </div>`
         }).forEach(div=> {
             grid.innerHTML += div;
         });
