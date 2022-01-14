@@ -12,13 +12,21 @@
             border: 1px solid black;
             padding: 10px;
         }
+        #accordion input[type=radio] {
+            display: none;
+        }
+        #accordion label {
+            width: 100%;
+            background-color: lightgray;
+        }
         #accordion span {
             width: 100%;
             background-color: lightgray;
         }
-        #accordion input:checked + span {
+        #accordion input:checked + label {
             background-color: lightgreen;
         }
+
         #accordion article {
             display: none;
         }
@@ -26,6 +34,12 @@
             display: block;
         }
 
+        .accordion-panel {
+            width: 100%;
+        }
+        .accordion-panel label {
+            width: 100%;
+        }
 
     </style>
 </head>
@@ -34,26 +48,26 @@
     <h1>CSS Only Accordion</h1>
 
     <div id="accordion">
-        <div>
-            <input type="radio" name="accordion">
-            <span>Panel 1</span>
+        <div class="accordion-panel">
+            <input type="radio" id="accordion-1" name="accordion">
+            <label for="accordion-1">Panel 1</label>
             <article>
                 <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quibusdam nostrum repudiandae a recusandae dicta, illum corporis commodi sint culpa non itaque deleniti suscipit maiores illo laborum labore consectetur harum ex.</p>
                 <p>Laboriosam nihil necessitatibus doloribus harum magnam saepe sequi quae voluptas expedita? Aut dolorum ipsum eaque, quaerat voluptatibus, distinctio deleniti sequi inventore at aperiam provident beatae atque dolore officiis recusandae ea!</p>
                 <p>Quis, repellendus alias sapiente aliquid veniam iste soluta consectetur voluptate ab rem. Optio eum odit blanditiis fugit nihil mollitia cumque ratione, rem, inventore ut minima iusto voluptate unde vitae magnam!</p>
             </article>
         </div>
-        <div>
-            <input type="radio" name="accordion">
-            <span>Panel 2</span>
+        <div class="accordion-panel">
+            <input type="radio" name="accordion" id="accordion-2">
+            <label for="accordion-2">Panel 2</label>
             <article>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur iusto dicta magnam sit voluptatum. Reprehenderit maiores, quod aliquam nobis nemo earum unde architecto velit sit labore animi est nostrum ipsam!</p>
                 <p>Non, fugit. Corrupti voluptates nesciunt similique vero perferendis veniam, ex iste illum molestiae asperiores impedit suscipit perspiciatis libero blanditiis quod! Perspiciatis assumenda vero quidem distinctio pariatur ullam veritatis ipsam nemo.</p>
             </article>
         </div>
-        <div>
-            <input type="radio" name="accordion">
-            <span>Panel 3</span>
+        <div class="accordion-panel">
+            <input type="radio" name="accordion" id="accordion-3">
+            <label for="accordion-3">Panel 3</label>
             <article>
                 <P>Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi eligendi, ut odio reiciendis temporibus molestias rem amet in ducimus facilis saepe tempore sint corporis sit porro delectus ad dolores sapiente?</P>
                 <P>Mollitia quasi nihil delectus dicta. Nisi earum repudiandae itaque, omnis, commodi distinctio doloribus, soluta nulla et voluptatibus culpa eius! Nemo dicta obcaecati at repellat corporis amet velit vitae cum quo.</P>
