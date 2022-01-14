@@ -371,23 +371,19 @@
                 colour: item.colour, 
                 quantity: item.quantity
             }
-        }).reduce((runningTotal, item)=>{
-
-            
+        }).reduce((runningTotal, item) => {
             if (runningTotal[item.user] == null) {
                 runningTotal[item.user] = {};
                 runningTotal[item.user][item.colour] = item.quantity;
             } else {
-                
                 if (runningTotal[item.user][item.colour] == null) {
                     runningTotal[item.user][item.colour] = item.quantity;
                 } else {
                     runningTotal[item.user][item.colour] += item.quantity;
                 }
             }
-            
             return runningTotal;
-        }, {})
+        }, {});
 
         console.log(result);
     </script>
