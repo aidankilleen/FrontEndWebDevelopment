@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        #accordion {
+            border: 1px solid black;
+            padding: 10px;
+        }
+        #accordion span {
+            width: 100%;
+            background-color: lightgray;
+        }
+        #accordion input:checked + span {
+            background-color: lightgreen;
+        }
+        #accordion article {
+            display: none;
+        }
+        #accordion input:checked ~ article {
+            display: block;
+        }
+
+
+    </style>
+</head>
+
+<body>
+    <h1>CSS Only Accordion</h1>
+
+    <div id="accordion">
+        <div>
+            <input type="radio" name="accordion">
+            <span>Panel 1</span>
+            <article>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quibusdam nostrum repudiandae a recusandae dicta, illum corporis commodi sint culpa non itaque deleniti suscipit maiores illo laborum labore consectetur harum ex.</p>
+                <p>Laboriosam nihil necessitatibus doloribus harum magnam saepe sequi quae voluptas expedita? Aut dolorum ipsum eaque, quaerat voluptatibus, distinctio deleniti sequi inventore at aperiam provident beatae atque dolore officiis recusandae ea!</p>
+                <p>Quis, repellendus alias sapiente aliquid veniam iste soluta consectetur voluptate ab rem. Optio eum odit blanditiis fugit nihil mollitia cumque ratione, rem, inventore ut minima iusto voluptate unde vitae magnam!</p>
+            </article>
+        </div>
+        <div>
+            <input type="radio" name="accordion">
+            <span>Panel 2</span>
+            <article>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur iusto dicta magnam sit voluptatum. Reprehenderit maiores, quod aliquam nobis nemo earum unde architecto velit sit labore animi est nostrum ipsam!</p>
+                <p>Non, fugit. Corrupti voluptates nesciunt similique vero perferendis veniam, ex iste illum molestiae asperiores impedit suscipit perspiciatis libero blanditiis quod! Perspiciatis assumenda vero quidem distinctio pariatur ullam veritatis ipsam nemo.</p>
+            </article>
+        </div>
+        <div>
+            <input type="radio" name="accordion">
+            <span>Panel 3</span>
+            <article>
+                <P>Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi eligendi, ut odio reiciendis temporibus molestias rem amet in ducimus facilis saepe tempore sint corporis sit porro delectus ad dolores sapiente?</P>
+                <P>Mollitia quasi nihil delectus dicta. Nisi earum repudiandae itaque, omnis, commodi distinctio doloribus, soluta nulla et voluptatibus culpa eius! Nemo dicta obcaecati at repellat corporis amet velit vitae cum quo.</P>
+                <P>Cum maxime laudantium obcaecati cumque accusamus tenetur magnam debitis ea officia atque esse corrupti harum, facilis optio ipsum soluta, iure voluptate. Quae, eligendi harum sed consequuntur nesciunt architecto tempore magni.</P>
+                <P>Necessitatibus voluptate cum pariatur molestias ratione illo voluptates unde dolore, eum, nulla similique autem eos natus odio. Veritatis, corporis officiis sunt tenetur rem voluptatum iusto modi omnis, molestiae ab labore.</P>
+            </article>
+        </div>
+    </div>
+    </div>
+
+
+
+    <details>
+        <summary>Panel 1</summary>
+        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Assumenda animi, vero enim fugit harum minus
+            accusamus tenetur quas provident ipsum ratione iusto facere ab, id natus! Quasi ex praesentium consequuntur.
+        </p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum, nulla voluptatum? Adipisci magnam natus
+            maiores velit voluptatum, ipsum sapiente et praesentium labore laborum suscipit eligendi hic quibusdam! Aut,
+            optio sequi!</p>
+        <p>Est ipsam, ad nemo ducimus veniam, doloremque asperiores sequi culpa accusantium aliquid sit perferendis
+            molestiae dolore reprehenderit, delectus earum deserunt similique! A corporis nam voluptatem deserunt sit
+            fuga eius ipsam.</p>
+    </details>
+
+    <details>
+        <summary>Panel 2</summary>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam nesciunt quaerat quis voluptas quos tempore
+            ratione deleniti nihil quo, esse soluta laudantium. Deleniti aperiam perspiciatis nemo ducimus? Laborum,
+            aliquam fuga!</p>
+        <p>Illum officiis, officia similique sit perspiciatis quisquam alias iure error maiores, doloremque asperiores
+            omnis vero ratione quasi fuga, provident assumenda! Soluta, odit voluptatibus! Asperiores laboriosam
+            temporibus impedit vitae laudantium officia.</p>
+        <p>Delectus quibusdam, iste aspernatur nisi laborum ea similique. Nihil nulla nobis assumenda tempora facere
+            nostrum nisi quod dolorum, vero, dolor cum repellendus ratione voluptates cumque nemo culpa unde maiores
+            accusamus?</p>
+    </details>
+
+    <details>
+        <summary>Panel 3</summary>
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quisquam modi minus fugiat non similique doloremque
+            maiores adipisci, est iusto consectetur illum natus id dicta totam rem debitis quaerat! Culpa, harum.</p>
+        <p>Culpa dolores quo sed praesentium exercitationem. Atque architecto quisquam modi ab quasi expedita, tempora
+            laudantium facere et obcaecati, sit tenetur neque distinctio possimus sequi, officiis quae in libero
+            voluptate quo.</p>
+        <p>Voluptate in repellendus architecto veritatis earum ullam modi? Magni illo facilis similique officia
+            quisquam? Magni voluptatibus porro, amet voluptates, architecto veniam quo eligendi illum reiciendis
+            consequatur dignissimos quas praesentium magnam?</p>
+        <p>Ex nesciunt alias repellat odio unde voluptas officia expedita blanditiis provident atque eos neque porro
+            quidem aperiam, perferendis eius consectetur molestias vero iste, voluptatem nemo. Eveniet veritatis tenetur
+            doloribus repellat.</p>
+        <p>Harum impedit eaque provident molestiae suscipit, dignissimos recusandae eius amet, libero atque quo rem,
+            debitis magnam perspiciatis. Accusamus, quaerat, iste hic architecto atque ipsum consequuntur distinctio ea
+            nisi omnis ratione?</p>
+    </details>
+    <hr>
+
+
+
+
+</body>
+
+</html>
