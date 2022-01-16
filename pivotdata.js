@@ -6,8 +6,8 @@ let data = [
       "quantity": 10
     },
     {
-      "date": "10/01/2021",
-      "user": "Bob",
+      "date": "01/01/2021",
+      "user": "Aidan",
       "make": "Nissan", 
       "quantity": 12
     },
