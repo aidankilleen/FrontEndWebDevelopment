@@ -65,6 +65,7 @@
             let rowList = Array.from(valueList.rows);
             let columnTotals = columnList.reduce(convertListToObjectWithEmptyTotals, {});
             let rowTotals = rowList.reduce(convertListToObjectWithEmptyTotals, {});
+            let grandTotal = ['total'].reduce(convertListToObjectWithEmptyTotals, {});
 
             let pivot = data.reduce((runningTotal, item) => {
 
@@ -78,7 +79,7 @@
                 addValueToTotals(runningTotal[row][column], item[valueField]);
                 addValueToTotals(columnTotals[column], item[valueField]);
                 addValueToTotals(rowTotals[row], item[valueField]);
-
+                addValueToTotals(grandTotal.total, item[valueField]);
                 return runningTotal;
             }, {});
 
@@ -87,12 +88,13 @@
                 columnList, 
                 rowTotals, 
                 columnTotals, 
-                pivot
+                pivot, 
+                grandTotal: grandTotal.total
             }
         }
 
         let result = generatePivotTable(data, "user", "make", "quantity");
-        let summary = "total";
+        let summary = "count";
 
         console.log(result);
 
@@ -126,15 +128,13 @@
         }
 
         // add the totals
-        let grandTotal = 0;
         tr = document.createElement("tr");
         html = "<td>Totals</td>";
 
         result.columnList.forEach(column => {
             html += `<td>${result.columnTotals[column][summary]}</td>`;
-            grandTotal += result.columnTotals[column][summary];
         });
-        html += `<td>${grandTotal}</td>`;
+        html += `<td>${result.grandTotal[summary]}</td>`;
         
         tr.innerHTML = html;
         tableBody.append(tr);
