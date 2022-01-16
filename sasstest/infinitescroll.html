@@ -50,12 +50,25 @@
         <div class="info-card">Card Number 12</div>
         <div class="info-card">Card Number 13</div>
         <div class="info-card">Card Number 14</div>
-        <div class="info-card">Card Number 15</div>
+        <div class="info-card">Last Card</div>
     </div>
 
     <script>
 
+
+        function loadNewCards() {
+            console.log("Adding new cards");
+            for (let i=0; i<10; i++) {
+                const card = document.createElement("div");
+                card.textContent = i == 9 ? "Last Card" : "new Card";
+                card.classList.add("info-card");
+                observer.observe(card);
+                cardContainer.append(card);
+            }
+        }
+
         const cards = document.querySelectorAll(".info-card");
+        const cardContainer = document.querySelector(".container");
 
         const observer = new IntersectionObserver((entries)=>{
 
@@ -68,8 +81,25 @@
             threshold:1
         });
 
+        const lastCardObserver = new IntersectionObserver(entries => {
+            const lastCard = entries[0];
+            if (!lastCard.isIntersecting) {
+                return;
+            }
+            loadNewCards();    
+            lastCardObserver.unobserve(lastCard.target);
+            lastCardObserver.observe(document.querySelector(".info-card:last-child"))
+        }, {
+            rootMargin: "100px"
+        })
+
+        lastCardObserver.observe(document.querySelector(".info-card:last-child"));
+
         cards.forEach(card => {
             observer.observe(card);
+
+
+
         })
 
     </script>

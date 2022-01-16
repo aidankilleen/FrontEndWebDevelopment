@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <style>
+
+        .person-card {
+            width: 200px;
+            height: 200px;
+            border: 1px solid black;
+            border-radius: 5px;
+            margin: 10px;
+            transform: translateX(200px);
+            opacity: 0;
+            transition: all, 500ms;
+        }
+        .person-card.show {
+            opacity: 1;
+            transform: translateX(0px);
+        }
+    </style>
+</head>
+<body>
+    <div class="card-container">
+
+    </div>
+    <script>
+
+        let url = "https://randomuser.me/api/?results=10";
+
+        function loadNewPeople() {
+
+            fetch (url)
+                .then(data => data.json())
+                .then(data => {
+                    let people = (data.results);
+                    
+                    people.forEach((person, index, list) => {
+                        const card = document.createElement("div");
+                        card.classList.add("person-card");
+                        card.innerHTML = `
+                            ${person.name.first} ${person.name.last}<br>
+                            <img src="${person.picture.large}">
+                        `;
+                        observer.observe(card);
+
+                        if (index == list.length - 1) {
+                            lastCardObserver.observe(card);
+                        }
+                        cardContainer.append(card);
+                    })
+                })
+        }
+
+        const cardContainer = document.querySelector(".card-container");
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                entry.target.classList.toggle("show", entry.isIntersecting);
+            });
+        }, {
+            threshold: 1
+        })
+       
+        const lastCardObserver = new IntersectionObserver(entries => {
+            console.log("last card...");
+            const lastCard = entries[0];
+
+            if (!lastCard.isIntersecting) {
+                return;
+            }
+            lastCardObserver.unobserve(lastCard.target);
+            loadNewPeople();
+        }, {
+
+        })
+        
+        loadNewPeople();
+    </script>
+</body>
+</html>
