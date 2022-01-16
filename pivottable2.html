@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <table id="tblPivot">
+        <thead>
+
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+    
+    <script src="pivotdata.js"></script>
+
+    <script>
+
+        // get the distinct list of rows and colums
+        const tableHead = document.querySelector("#tblPivot thead");
+        const tableBody = document.querySelector("#tblPivot tbody");
+
+        // value list contains a distinct list of the row and column values
+        let valueList = data.reduce((runningTotal, item) => {
+
+            runningTotal.rows.add(item["user"]);
+            runningTotal.cols.add(item["colour"]);
+
+            return runningTotal;
+
+        }, {rows:new Set(), cols: new Set()});
+
+        let columnList = Array.from(valueList.cols);
+        let rowList = Array.from(valueList.rows);
+
+        let pivot = data.reduce((runningTotal, item) => {
+
+            if (runningTotal[item.user] == null) {
+                // create a new row with 0 in each column
+                runningTotal[item.user] = columnList.reduce((emptyRow, column)=>{
+                    emptyRow[column]=0;
+                    return emptyRow;
+                }, {});
+            } 
+            runningTotal[item.user][item.colour] += item.quantity;
+
+            return runningTotal;
+        }, {});
+        console.log(valueList);
+
+        console.log(pivot);
+
+        // create the heading row
+        let tr = document.createElement("tr");
+        let html = "<td>&nbsp</td>";
+        columnList.map(column=>`<th>${column}</th>`)
+            .forEach(th=>html+=th);
+        tr.innerHTML = html;
+        tableHead.append(tr);
+        
+        for (let row of rowList) {
+
+            tr = document.createElement("tr");
+            html = `<td>${row}</td>`;
+
+            for (let col of columnList) {
+                console.log(`${row} ${col} ${pivot[row][col]}`);
+                html += `<td>${pivot[row][col]}</td>`;
+            }
+            tr.innerHTML = html;
+
+            tableBody.append(tr);
+        }
+
+
+
+
+    </script>
+</body>
+</html>

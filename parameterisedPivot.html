@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <table id="tblPivot">
+        <thead>
+
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+
+    <script src="pivotdata.js"></script>
+
+    <script>
+
+        let convertListToEmptyObject = (emptyList, column) => {
+            emptyList[column] = 0;
+            return emptyList;
+        }
+
+        let convertListToObjectWithEmptyTotals = (emptyList, column)=> {
+            emptyList[column] = {
+                total: 0, 
+                count: 0, 
+                max: 0, 
+                min: NaN, 
+                avg: 0
+            }
+            return emptyList;
+        }
+
+        function addValueToTotals(totals, value) {
+            totals.total += value;
+            totals.count++;
+            totals.max = value > totals.max ? value : totals.max;
+            totals.min = isNaN(totals.min) || value < totals.min ? value : totals.min;
+        }
+
+        function generatePivotTable(data, rowField, columnField, valueField) {
+
+            // value list contains a distinct list of the row and column values
+            let valueList = data.reduce((runningTotal, item) => {
+                runningTotal.rows.add(item[rowField] ? item[rowField] : 'Other');
+                runningTotal.cols.add(item[columnField] ? item[columnField] : 'Other');
+                return runningTotal;
+            }, { rows: new Set(), cols: new Set() });
+
+            let columnList = Array.from(valueList.cols);
+            let rowList = Array.from(valueList.rows);
+            let columnTotals = columnList.reduce(convertListToObjectWithEmptyTotals, {});
+            let rowTotals = rowList.reduce(convertListToObjectWithEmptyTotals, {});
+
+            let pivot = data.reduce((runningTotal, item) => {
+
+                let row = item[rowField] ? item[rowField] : 'Other';
+                let column = item[columnField] ? item[columnField] : 'Other';
+                if (runningTotal[row] == null) {
+                    // create a new row with 0 in each column
+                    runningTotal[row] = columnList.reduce(convertListToObjectWithEmptyTotals, {});
+                }
+
+                addValueToTotals(runningTotal[row][column], item[valueField]);
+                addValueToTotals(columnTotals[column], item[valueField]);
+                addValueToTotals(rowTotals[row], item[valueField]);
+
+                return runningTotal;
+            }, {});
+
+            return {
+                rowList, 
+                columnList, 
+                rowTotals, 
+                columnTotals, 
+                pivot
+            }
+        }
+
+        let result = generatePivotTable(data, "user", "make", "quantity");
+        let summary = "min";
+
+        console.log(result);
+
+        // get the distinct list of rows and colums
+        const tableHead = document.querySelector("#tblPivot thead");
+        const tableBody = document.querySelector("#tblPivot tbody");
+
+        // create the heading row
+        let tr = document.createElement("tr");
+        let html = "<td>&nbsp</td>";
+        result.columnList.map(column=>`<th>${column}</th>`)
+            .forEach(th=>html+=th);
+        html += `<th>Totals</th>`
+        tr.innerHTML = html;
+        tableHead.append(tr);
+        
+        for (let row of result.rowList) {
+
+            tr = document.createElement("tr");
+            html = `<td>${row}</td>`;
+
+            for (let col of result.columnList) {
+                html += `<td>${isNaN(result.pivot[row][col][summary]) ? ' - ' : result.pivot[row][col][summary]}</td>`;
+            }
+            
+            html += `<td>${result.rowTotals[row][summary]}</td>`;
+
+            tr.innerHTML = html;
+
+            tableBody.append(tr);
+        }
+
+        // add the totals
+        let grandTotal = 0;
+        tr = document.createElement("tr");
+        html = "<td>Totals</td>";
+
+        result.columnList.forEach(column => {
+            html += `<td>${result.columnTotals[column][summary]}</td>`;
+            grandTotal += result.columnTotals[column][summary];
+        });
+        html += `<td>${grandTotal}</td>`;
+        
+        tr.innerHTML = html;
+        tableBody.append(tr);
+
+
+    </script>
+</body>
+
+</html>
