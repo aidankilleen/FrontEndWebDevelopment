@@ -16,29 +16,22 @@
             display: none;
         }
         #accordion label {
-            width: 100%;
+            display: block;
+            padding: 20px;
             background-color: lightgray;
-        }
-        #accordion span {
-            width: 100%;
-            background-color: lightgray;
+            border: 1px solid black;
         }
         #accordion input:checked + label {
             background-color: lightgreen;
         }
 
         #accordion article {
-            display: none;
+            height: 0px;
+            overflow-y: hidden;
+            transition: all 500ms;
         }
         #accordion input:checked ~ article {
-            display: block;
-        }
-
-        .accordion-panel {
-            width: 100%;
-        }
-        .accordion-panel label {
-            width: 100%;
+            height: 250px;
         }
 
     </style>
@@ -49,7 +42,7 @@
 
     <div id="accordion">
         <div class="accordion-panel">
-            <input type="radio" id="accordion-1" name="accordion">
+            <input type="radio" id="accordion-1" name="accordion" checked>
             <label for="accordion-1">Panel 1</label>
             <article>
                 <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quibusdam nostrum repudiandae a recusandae dicta, illum corporis commodi sint culpa non itaque deleniti suscipit maiores illo laborum labore consectetur harum ex.</p>
@@ -77,56 +70,6 @@
         </div>
     </div>
     </div>
-
-
-
-    <details>
-        <summary>Panel 1</summary>
-        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Assumenda animi, vero enim fugit harum minus
-            accusamus tenetur quas provident ipsum ratione iusto facere ab, id natus! Quasi ex praesentium consequuntur.
-        </p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum, nulla voluptatum? Adipisci magnam natus
-            maiores velit voluptatum, ipsum sapiente et praesentium labore laborum suscipit eligendi hic quibusdam! Aut,
-            optio sequi!</p>
-        <p>Est ipsam, ad nemo ducimus veniam, doloremque asperiores sequi culpa accusantium aliquid sit perferendis
-            molestiae dolore reprehenderit, delectus earum deserunt similique! A corporis nam voluptatem deserunt sit
-            fuga eius ipsam.</p>
-    </details>
-
-    <details>
-        <summary>Panel 2</summary>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam nesciunt quaerat quis voluptas quos tempore
-            ratione deleniti nihil quo, esse soluta laudantium. Deleniti aperiam perspiciatis nemo ducimus? Laborum,
-            aliquam fuga!</p>
-        <p>Illum officiis, officia similique sit perspiciatis quisquam alias iure error maiores, doloremque asperiores
-            omnis vero ratione quasi fuga, provident assumenda! Soluta, odit voluptatibus! Asperiores laboriosam
-            temporibus impedit vitae laudantium officia.</p>
-        <p>Delectus quibusdam, iste aspernatur nisi laborum ea similique. Nihil nulla nobis assumenda tempora facere
-            nostrum nisi quod dolorum, vero, dolor cum repellendus ratione voluptates cumque nemo culpa unde maiores
-            accusamus?</p>
-    </details>
-
-    <details>
-        <summary>Panel 3</summary>
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quisquam modi minus fugiat non similique doloremque
-            maiores adipisci, est iusto consectetur illum natus id dicta totam rem debitis quaerat! Culpa, harum.</p>
-        <p>Culpa dolores quo sed praesentium exercitationem. Atque architecto quisquam modi ab quasi expedita, tempora
-            laudantium facere et obcaecati, sit tenetur neque distinctio possimus sequi, officiis quae in libero
-            voluptate quo.</p>
-        <p>Voluptate in repellendus architecto veritatis earum ullam modi? Magni illo facilis similique officia
-            quisquam? Magni voluptatibus porro, amet voluptates, architecto veniam quo eligendi illum reiciendis
-            consequatur dignissimos quas praesentium magnam?</p>
-        <p>Ex nesciunt alias repellat odio unde voluptas officia expedita blanditiis provident atque eos neque porro
-            quidem aperiam, perferendis eius consectetur molestias vero iste, voluptatem nemo. Eveniet veritatis tenetur
-            doloribus repellat.</p>
-        <p>Harum impedit eaque provident molestiae suscipit, dignissimos recusandae eius amet, libero atque quo rem,
-            debitis magnam perspiciatis. Accusamus, quaerat, iste hic architecto atque ipsum consequuntur distinctio ea
-            nisi omnis ratione?</p>
-    </details>
-    <hr>
-
-
-
 
 </body>
 
