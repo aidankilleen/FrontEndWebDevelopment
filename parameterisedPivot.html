@@ -6,6 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+
+        #tblPivot tbody td:not(:nth-child(1)) {
+            text-align: right;
+        }
+    </style>
 </head>
 
 <body>
@@ -86,7 +92,7 @@
         }
 
         let result = generatePivotTable(data, "user", "make", "quantity");
-        let summary = "min";
+        let summary = "total";
 
         console.log(result);
 
